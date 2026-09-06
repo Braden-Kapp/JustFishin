@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=3 uid="uid://b3s50a2i8k6og"]
+
+[ext_resource type="Script" uid="uid://dj04nank3dm3a" path="res://Scripts/LOADER.gd" id="1_6whob"]
+[ext_resource type="Script" uid="uid://dyj425wc4ue38" path="res://Scripts/Fishing.gd" id="1_j2wod"]
+[ext_resource type="Script" uid="uid://4d0r8mbeti42" path="res://Scripts/FishManager.gd" id="1_v1qfn"]
+[ext_resource type="Texture2D" uid="uid://r1vgocpwbwxx" path="res://Art/icon.svg" id="3_hh5uf"]
+[ext_resource type="Script" uid="uid://b5pgoy3xen6n5" path="res://Scripts/player.gd" id="5_u7krg"]
+[ext_resource type="Script" uid="uid://cxqkj44jtaqx5" path="res://Scripts/CompletionTracker.gd" id="6_tx0tn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wjtap"]
+size = Vector2(129, 132)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v7gqg"]
+size = Vector2(126, 127)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_chwn1"]
+size = Vector2(128, 124)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_6whob")
+
+[node name="CompletionTracker" type="Node2D" parent="."]
+script = ExtResource("6_tx0tn")
+
+[node name="Sprite2D" type="Sprite2D" parent="CompletionTracker"]
+texture = ExtResource("3_hh5uf")
+
+[node name="FishManager" type="Node2D" parent="."]
+script = ExtResource("1_v1qfn")
+
+[node name="Fish" type="Node2D" parent="."]
+script = ExtResource("1_j2wod")
+
+[node name="FishSprite" type="Sprite2D" parent="Fish"]
+position = Vector2(532, 304)
+texture = ExtResource("3_hh5uf")
+
+[node name="Area2D" type="Area2D" parent="Fish/FishSprite"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fish/FishSprite/Area2D"]
+position = Vector2(-0.5, -1)
+shape = SubResource("RectangleShape2D_wjtap")
+debug_color = Color(0, 0.644206, 0.285471, 0.42)
+
+[node name="Player" type="RigidBody2D" parent="."]
+position = Vector2(532, 169)
+gravity_scale = 0.5
+script = ExtResource("5_u7krg")
+
+[node name="PlayerCollision" type="CollisionShape2D" parent="Player"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_v7gqg")
+debug_color = Color(0.872996, 0.000457435, 0.842153, 0.42)
+
+[node name="PlayerSprite" type="Sprite2D" parent="Player"]
+texture = ExtResource("3_hh5uf")
+
+[node name="Area2D" type="Area2D" parent="Player"]
+
+[node name="AreaShape" type="CollisionShape2D" parent="Player/Area2D"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_chwn1")
+
+[connection signal="area_entered" from="Player/Area2D" to="CompletionTracker" method="_on_area_2d_player_area_entered"]
+[connection signal="area_exited" from="Player/Area2D" to="CompletionTracker" method="_on_area_2d_area_exited"]
