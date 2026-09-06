@@ -23,7 +23,7 @@ noise = SubResource("FastNoiseLite_p20hg")
 shader = ExtResource("3_p20hg")
 shader_parameter/water = ExtResource("9_2ooml")
 shader_parameter/noise = SubResource("NoiseTexture2D_he4j0")
-shader_parameter/scrollSpeed = Vector2(0.03, 0.02)
+shader_parameter/scrollSpeed = Vector2(0.05, 0.09)
 shader_parameter/distortion_strength = 0.02
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wjtap"]
