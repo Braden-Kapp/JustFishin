@@ -14,7 +14,8 @@ func get_random_fish() -> FishData:
 #It's that or inspector and I don't really trust the inspector
 func _ready() -> void:
 	# Add fish using helper
-	_create_fish("Bass", "res://Art/icon.svg", 3.5, 1.5, [10.0, 25.5, 40.0])
+	#Y vals should be between -254 and 75
+	_create_fish("Bass", "res://Art/icon.svg", 35, 1.5, [-200.0, 25.5, 30.0, -120, -40, -60, -25])
 	_create_fish("Trout", "res://Art/icon.svg", 5.0, 0.8, [15.0, 30.0, 50.0])
 	_create_fish("Catfish", "res://Art/icon.svg", 1.2, 4.0, [80.0, 90.0, 100.0])
 	

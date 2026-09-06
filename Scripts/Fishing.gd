@@ -14,16 +14,18 @@ var current: int = 0
 var waitTime: float = 0.0
 var isMoving: bool = false
 
-
+func stop_Fishing():
+	isMoving = false
+	fishSprite.visible = false
+	curFishPositions = []
+	targetPosition.y = 0
+	posSize = 0
 
 func start_Fishing(data: FishData):
 	if not data:
 		return
-		
 	# Receive Fish
 	curFish = data
-	
-	
 	# Set Up
 	speed = curFish.speed * 10
 	waitTime = curFish.wait_time
@@ -34,7 +36,6 @@ func start_Fishing(data: FishData):
 	
 	if fishSprite and curFish.image:
 		fishSprite.texture = curFish.image
-		
 	# ENSURE coordinates exist
 	if posSize > 0:
 		targetPosition = Vector2(startX, curFishPositions[current])
@@ -46,21 +47,23 @@ func _process(delta: float) -> void:
 	if not isMoving or posSize == 0:
 		return
 
-	# Move toward current target
+	# Move toward target
 	if global_position != targetPosition:
 		global_position = global_position.move_toward(targetPosition, speed * delta)
 	else:
-		 #pause and pick next position
+		 #pause and pick
 		_advance_to_next_position()
 
 func _advance_to_next_position() -> void:
 	isMoving = false
 	
-	# Wait before moving to the next coordinate
+	# Wait before moving
 	if waitTime > 0:
 		await get_tree().create_timer(waitTime * 0.4).timeout
-	
-	# Increment index and wrap around safely using modulo (%)
+	# ERROR CHECK: posSize could,ve been set to 0 during await!
+	if posSize == 0:
+		return
+	# Increment index and wrap
 	current = (current + 1) % posSize
 	targetPosition.y = curFishPositions[current]
 	

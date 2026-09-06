@@ -1,8 +1,12 @@
 extends RigidBody2D
+signal cast
 
-# Adjust this force to combat your project's gravity settings
-const UP = -2000.0 
+@export var up = -1500.0 
+var fishing = false
 
 func _physics_process(_delta: float) -> void:
-	if Input.is_action_pressed("fishButtons"):
-		apply_central_force(Vector2(0, UP))
+	if !fishing && Input.is_action_pressed("fishButtons"):
+		emit_signal("cast")
+	elif fishing  && Input.is_action_pressed("fishButtons"):
+		apply_central_force(Vector2(0, up))
+	
