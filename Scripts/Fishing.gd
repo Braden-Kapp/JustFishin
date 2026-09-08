@@ -34,8 +34,9 @@ func start_Fishing(data: FishData):
 	current = 0
 	startX = position.x 
 	
-	if fishSprite and curFish.image:
-		fishSprite.texture = curFish.image
+	#In case I wanna change image per fish
+	#if fishSprite and curFish.image:
+	#	fishSprite.texture = curFish.image
 	# ENSURE coordinates exist
 	if posSize > 0:
 		targetPosition = Vector2(startX, curFishPositions[current])
