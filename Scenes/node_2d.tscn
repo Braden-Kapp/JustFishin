@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://b3s50a2i8k6og"]
+[gd_scene load_steps=33 format=3 uid="uid://b3s50a2i8k6og"]
 
 [ext_resource type="Script" uid="uid://dj04nank3dm3a" path="res://Scripts/LOADER.gd" id="1_6whob"]
 [ext_resource type="Script" uid="uid://dyj425wc4ue38" path="res://Scripts/Fishing.gd" id="1_j2wod"]
@@ -7,11 +7,17 @@
 [ext_resource type="Texture2D" uid="uid://r1vgocpwbwxx" path="res://Art/icon.svg" id="3_hh5uf"]
 [ext_resource type="Shader" uid="uid://b8ymevp0lcjqd" path="res://Shaders/water.gdshader" id="3_p20hg"]
 [ext_resource type="Texture2D" uid="uid://bycp6sul6hwu4" path="res://Art/PNG/catchbar_scene1_prototype.png" id="4_2ooml"]
-[ext_resource type="Texture2D" uid="uid://dv3odeux5clac" path="res://Art/PNG/willie_scene1_prototype.png" id="5_p20hg"]
+[ext_resource type="Texture2D" uid="uid://cj2ekuokrw18o" path="res://Art/PNG/water_scene1.png" id="4_c32x4"]
 [ext_resource type="Script" uid="uid://b5pgoy3xen6n5" path="res://Scripts/player.gd" id="5_u7krg"]
+[ext_resource type="Texture2D" uid="uid://cx6404akpnl0f" path="res://Art/PNG/wallierod_scene1.png" id="6_he4j0"]
 [ext_resource type="Script" uid="uid://cxqkj44jtaqx5" path="res://Scripts/CompletionTracker.gd" id="6_tx0tn"]
+[ext_resource type="Texture2D" uid="uid://cscer5aod4f1p" path="res://Art/PNG/line_scene1.png" id="7_85gyg"]
 [ext_resource type="Texture2D" uid="uid://3ktbtxfgtll8" path="res://Art/PNG/foreground_scene1_prototype.png" id="9_2ooml"]
+[ext_resource type="Texture2D" uid="uid://sron16a80ucu" path="res://Art/PNG/land_scene1.png" id="9_fg7i4"]
+[ext_resource type="Texture2D" uid="uid://cfj7fv6cwgv0j" path="res://Art/PNG/bass_scene1_prototype.png" id="10_hpu6p"]
+[ext_resource type="Texture2D" uid="uid://kv61hq7bfwoe" path="res://Art/PNG/sidebar_scene1_prototype.png" id="11_gwne5"]
 [ext_resource type="Texture2D" uid="uid://blfhvuhenm3vj" path="res://Art/PNG/slidebar_prototype.png" id="11_p20hg"]
+[ext_resource type="Texture2D" uid="uid://ej74ecbh7ssf" path="res://Art/PNG/progressbar_scene1_prototype.png" id="12_hpu6p"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_p20hg"]
 
@@ -21,13 +27,19 @@ noise = SubResource("FastNoiseLite_p20hg")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_he4j0"]
 shader = ExtResource("3_p20hg")
-shader_parameter/water = ExtResource("9_2ooml")
+shader_parameter/water = ExtResource("4_c32x4")
 shader_parameter/noise = SubResource("NoiseTexture2D_he4j0")
 shader_parameter/scrollSpeed = Vector2(0.05, 0.09)
 shader_parameter/distortion_strength = 0.02
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wjtap"]
-size = Vector2(129, 132)
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_gwne5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hpu6p"]
+shader = ExtResource("3_p20hg")
+shader_parameter/water = ExtResource("7_85gyg")
+shader_parameter/noise = SubResource("NoiseTexture2D_gwne5")
+shader_parameter/scrollSpeed = Vector2(0.15, 0.3)
+shader_parameter/distortion_strength = 0.01
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v7gqg"]
 size = Vector2(43, 64)
@@ -35,11 +47,104 @@ size = Vector2(43, 64)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_chwn1"]
 size = Vector2(44, 63)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wjtap"]
+size = Vector2(129, 132)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2ooml"]
 size = Vector2(65, 77)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p20hg"]
 size = Vector2(60, 45)
+
+[sub_resource type="Animation" id="Animation_op2xg"]
+resource_name = "FishBiteLower"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Art/Fish:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(332, 729), Vector2(396, 453)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Art/Fish:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.40813]
+}
+
+[sub_resource type="Animation" id="Animation_hpu6p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Art/Fish:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(332, 729)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Art/Fish:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.40813]
+}
+
+[sub_resource type="Animation" id="Animation_1nvmp"]
+resource_name = "FishCaught"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Art/Fish:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.433333, 1),
+"transitions": PackedFloat32Array(0.5, 7.72749, 1.51572),
+"update": 0,
+"values": [Vector2(396, 453), Vector2(260, 100), Vector2(100, 270)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Art/Fish:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0333333, 0.333333, 0.633333, 1.36667),
+"transitions": PackedFloat32Array(1, 1, 0.594603, 1),
+"update": 0,
+"values": [-1.40813, -2.98975, -5.84336, -6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1nvmp"]
+_data = {
+&"FishBiteLower": SubResource("Animation_op2xg"),
+&"FishCaught": SubResource("Animation_1nvmp"),
+&"RESET": SubResource("Animation_hpu6p")
+}
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_6whob")
@@ -50,42 +155,47 @@ script = ExtResource("1_6whob")
 position = Vector2(320, 320)
 texture = ExtResource("2_2ooml")
 
+[node name="Wallie" type="Sprite2D" parent="Art"]
+position = Vector2(320, 320)
+texture = ExtResource("6_he4j0")
+
 [node name="Water" type="Sprite2D" parent="Art"]
 material = SubResource("ShaderMaterial_he4j0")
-position = Vector2(320, 320)
+position = Vector2(294, 320)
+scale = Vector2(1.08125, 1)
 texture = ExtResource("9_2ooml")
+
+[node name="Land" type="Sprite2D" parent="Art"]
+position = Vector2(320, 320)
+texture = ExtResource("9_fg7i4")
 
 [node name="FishingBar" type="Sprite2D" parent="Art"]
 position = Vector2(320, 320)
 texture = ExtResource("4_2ooml")
 
-[node name="Fish" type="Sprite2D" parent="Art"]
+[node name="FishingLine" type="Sprite2D" parent="Art"]
+material = SubResource("ShaderMaterial_hpu6p")
 position = Vector2(320, 320)
-texture = ExtResource("5_p20hg")
+texture = ExtResource("7_85gyg")
+
+[node name="Fish" type="Sprite2D" parent="Art"]
+position = Vector2(332, 729)
+rotation = -1.40813
+texture = ExtResource("10_hpu6p")
 
 [node name="CompletionTracker" type="Node2D" parent="."]
 script = ExtResource("6_tx0tn")
 
-[node name="Sprite2D" type="Sprite2D" parent="CompletionTracker"]
-texture = ExtResource("3_hh5uf")
+[node name="ProgressBar" type="TextureProgressBar" parent="CompletionTracker"]
+offset_top = -1.0
+offset_right = 640.0
+offset_bottom = 639.0
+fill_mode = 3
+texture_under = ExtResource("11_gwne5")
+texture_progress = ExtResource("12_hpu6p")
 
 [node name="FishManager" type="Node2D" parent="."]
 script = ExtResource("1_v1qfn")
-
-[node name="Fish" type="Node2D" parent="."]
-script = ExtResource("1_j2wod")
-
-[node name="FishSprite" type="Sprite2D" parent="Fish"]
-position = Vector2(591, 405)
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("3_hh5uf")
-
-[node name="Area2D" type="Area2D" parent="Fish/FishSprite"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Fish/FishSprite/Area2D"]
-position = Vector2(-0.5, -1)
-shape = SubResource("RectangleShape2D_wjtap")
-debug_color = Color(0, 0.644206, 0.285471, 0.42)
 
 [node name="Player" type="RigidBody2D" parent="."]
 position = Vector2(590, 476)
@@ -106,6 +216,21 @@ texture = ExtResource("11_p20hg")
 position = Vector2(-1, 0.5)
 shape = SubResource("RectangleShape2D_chwn1")
 
+[node name="Fish" type="Node2D" parent="."]
+script = ExtResource("1_j2wod")
+
+[node name="FishSprite" type="Sprite2D" parent="Fish"]
+position = Vector2(591, 405)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("3_hh5uf")
+
+[node name="Area2D" type="Area2D" parent="Fish/FishSprite"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fish/FishSprite/Area2D"]
+position = Vector2(-0.5, -1)
+shape = SubResource("RectangleShape2D_wjtap")
+debug_color = Color(0, 0.644206, 0.285471, 0.42)
+
 [node name="Walls" type="StaticBody2D" parent="."]
 position = Vector2(591, 300)
 
@@ -116,6 +241,11 @@ shape = SubResource("RectangleShape2D_2ooml")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls"]
 position = Vector2(-1, 231.5)
 shape = SubResource("RectangleShape2D_p20hg")
+
+[node name="FishAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_1nvmp")
+}
 
 [connection signal="area_entered" from="Player/Area2D" to="CompletionTracker" method="_on_area_2d_player_area_entered"]
 [connection signal="area_exited" from="Player/Area2D" to="CompletionTracker" method="_on_area_2d_area_exited"]
